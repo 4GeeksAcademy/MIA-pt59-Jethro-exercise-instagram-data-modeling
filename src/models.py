@@ -49,8 +49,8 @@ class WritePost(Base):
     __tablename__ = 'writepost'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
-    user_id = Column(Integer, primary_key=True)
-    post_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    post_id = Column(Integer, ForeignKey('post.id'), primary_key=True)
     user = relationship(User)    
     user = relationship(Post)
 
@@ -58,8 +58,8 @@ class SavePost(Base):
     __tablename__ = 'savepost'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
-    user_id = Column(Integer, primary_key=True)
-    post_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    post_id = Column(Integer, ForeignKey('post.id'), primary_key=True)
     post_title = Column(String(250), nullable=False)
     post_text = Column(String(10250), nullable=False)
     post_photo = Column(LargeBinary)
